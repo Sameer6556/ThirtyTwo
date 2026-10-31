@@ -101,6 +101,7 @@ def test_classifier_matches_train_arch_on_saved_crops(tmp_path, sample_bytes, mo
 
 # ----------------------------------------------------------------------------- detectors
 @needs_assets
+@pytest.mark.filterwarnings('ignore::RuntimeWarning')     # ultralytics' metrics on an image without labels
 @pytest.mark.parametrize('name', ['plain YOLO', 'round-3 self-trained YOLO26m'])
 def test_disease_detector_matches_ultralytics_validator(tmp_path, sample_bytes, model, name):
     """the validator copy == ultralytics' own model.val(batch=1) on the same JPEG, read back as validator_boxes does"""

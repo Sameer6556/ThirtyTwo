@@ -1,0 +1,15 @@
+{
+ "description": "Display thresholds: for each disease, the score with the best F1 at IoU 0.5 (dentex_utils.f1_threshold) on the 70 protocol-A validation X-rays (keys/A_val.txt), for each mode. Never tuned on the official 50.",
+ "full": {
+  "caries": 0.3571,
+  "deep_caries": 0.21104,
+  "periapical_lesion": 0.10637,
+  "impacted": 0.18998
+ },
+ "quick": {
+  "caries": 0.24963,
+  "deep_caries": 0.25805,
+  "periapical_lesion": 0.12083,
+  "impacted": 0.34476
+ }
+}
