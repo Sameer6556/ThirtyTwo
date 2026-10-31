@@ -22,8 +22,9 @@ dentex_work_*/
 *.bmp
 *.tif
 *.tiff
-!docs/**/*.png
-!docs/**/*.jpg
+# the one exception: two unmodified DENTEX validation X-rays bundled as samples (CC BY-NC-SA 4.0, see LICENSE.txt there)
+!thirtytwo/static/samples/val_14.png
+!thirtytwo/static/samples/val_28.png
 
 # Python
 __pycache__/

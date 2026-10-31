@@ -58,18 +58,24 @@ class ThirtyTwo:
                           for d in C.DETECTORS}
 
     # ------------------------------------------------------------------ the system
-    def members(self, gray, teeth, exports):
+    def members(self, gray, teeth, exports, trace=None):
         """the nine fusion members' predictions (notebook dicts), in the fusion's order"""
         rows, cache = tooth_rows(gray, teeth)
-        out = [make_tooth_preds(rows, clf(rows, cache), c['conf_pow'], self.adapter if c['boxes'] == 'median adapter'
-                                else None) for clf, c in zip(self.classifiers, C.CLASSIFIERS)]
+        probs = [clf(rows, cache) for clf in self.classifiers]
+        out = [make_tooth_preds(rows, p, c['conf_pow'], self.adapter if c['boxes'] == 'median adapter' else None)
+               for p, c in zip(probs, C.CLASSIFIERS)]
+        boxes = {}
         for d in C.DETECTORS:
             bgr, s = exports[d['export']]
-            out.append(make_det_preds(self.detectors[d['name']](bgr, s), teeth))
+            boxes[d['name']] = self.detectors[d['name']](bgr, s)
+            out.append(make_det_preds(boxes[d['name']], teeth))
+        if trace is not None:      # what the accuracy check compares with the saved references
+            trace.update(rows=rows, probs=probs, boxes=boxes, members=out)
         return out, rows
 
-    def run(self, gray, mode):
-        """(fused predictions as the notebook's dicts, teeth, warning); the accuracy check scores these"""
+    def run(self, gray, mode, trace=None):
+        """(fused predictions as the notebook's dicts, teeth, warning); the accuracy check scores these.
+        trace: an optional dict that receives every member's output."""
         if mode not in MODES:
             raise ValueError(f'mode must be one of {MODES}')
         h, w = gray.shape[:2]
@@ -78,6 +84,8 @@ class ThirtyTwo:
             return [], [], warning
         exports = {C.LONG_SIDE: images.export(gray, C.LONG_SIDE)}
         teeth = self.tooth(*exports[C.LONG_SIDE])
+        if trace is not None:
+            trace['teeth'] = teeth
         warning = panoramic_warning(w, h, teeth)
         if warning:
             return [], teeth, warning
@@ -85,7 +93,7 @@ class ThirtyTwo:
             bgr, s = exports[C.LONG_SIDE]
             return make_det_preds(self.detectors[C.QUICK_DETECTOR](bgr, s), teeth), teeth, None
         exports[C.LONG_SIDE_HI] = images.export(gray, C.LONG_SIDE_HI)
-        members, rows = self.members(gray, teeth, exports)
+        members, rows = self.members(gray, teeth, exports, trace)
         if C.FUSION['detector_boxes']:
             members = with_detector_boxes(members, C.FUSION_KINDS, {KEY: rows}, C.FUSION['donor_iou'])
         return wbf_members(members, C.FUSION['weights'], C.FUSION['iou']), teeth, None
