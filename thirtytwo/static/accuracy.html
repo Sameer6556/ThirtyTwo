@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accuracy · Thirty Two</title>
+<meta name="description" content="How accurate Thirty Two is on the official DENTEX validation X-rays, and its limits.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a class="brand" href="/">Thirty Two</a>
+  </div>
+</header>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>Accuracy</h1>
+    <p class="lede">On the 50 official DENTEX validation X-rays, the full system scores 48.8 AP and Quick mode 48.1,
+      against 38.0 for a standard YOLO11m detector. Over five random splits of the DENTEX data, the full system
+      averages 47.8 AP.</p>
+  </header>
+
+  <figure class="figure">
+    <figcaption><h2>AP on the official 50</h2><p class="fine">Scale from 0 to 100.</p></figcaption>
+    <table class="barchart">
+      <thead class="visually-hidden"><tr><th scope="col">System</th><th scope="col">AP</th></tr></thead>
+      <tbody>
+        <tr class="em"><th scope="row">Full system</th><td><span class="bar w-48-8"></span><span class="val">48.8</span></td></tr>
+        <tr><th scope="row">Quick mode</th><td><span class="bar w-48-1"></span><span class="val">48.1</span></td></tr>
+        <tr><th scope="row">Standard YOLO11m</th><td><span class="bar w-38-0"></span><span class="val">38.0</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">AP is a strict score from 0 to 100 for how closely the boxes overlap the experts' boxes, not the
+      percentage of correct answers.</p>
+  </figure>
+
+  <figure class="figure dark">
+    <figcaption><h2>AP per finding, full system</h2><p class="fine">The same 50 X-rays, scale from 0 to 100.</p></figcaption>
+    <table class="barchart">
+      <thead class="visually-hidden"><tr><th scope="col">Finding</th><th scope="col">AP</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span class="swatch caries"></span>Caries</th><td><span class="bar caries w-41-6"></span><span class="val">41.6</span></td></tr>
+        <tr><th scope="row"><span class="swatch deep"></span>Deep caries</th><td><span class="bar deep w-56-1"></span><span class="val">56.1</span></td></tr>
+        <tr><th scope="row"><span class="swatch peri"></span>Periapical lesion</th><td><span class="bar peri w-37-7"></span><span class="val">37.7</span></td></tr>
+        <tr><th scope="row"><span class="swatch impacted"></span>Impacted tooth</th><td><span class="bar impacted w-59-6"></span><span class="val">59.6</span></td></tr>
+      </tbody>
+    </table>
+  </figure>
+
+  <section class="section">
+    <h2>Limitations</h2>
+    <ul class="list">
+      <li>Trained only on DENTEX, which comes from three hospitals in one country.</li>
+      <li>Not tested on other X-ray machines or in other clinics.</li>
+      <li>It can miss findings and raise false alarms.</li>
+      <li>Periapical lesions are the hardest class.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>How it was measured</h2>
+    <p>The score is the DENTEX challenge's average precision (COCO AP), averaged over box overlaps from 50% to 95%.
+      Every setting was chosen on 70 other X-rays, so the official 50 never chose anything. This app reproduces the
+      numbers on an ordinary CPU.</p>
+  </section>
+
+  <p class="next"><a href="/about">About the project</a></p>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p>Thirty Two. Research prototype, not a medical device.</p>
+    <nav aria-label="Pages"><a href="/">Tool</a><a href="/how-it-works">How it works</a><a href="/accuracy" aria-current="page">Accuracy</a><a href="/about">About</a></nav>
+  </div>
+</footer>
+</body>
+</html>

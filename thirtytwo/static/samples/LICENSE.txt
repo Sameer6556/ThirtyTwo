@@ -1,0 +1,24 @@
+Sample X-rays: val_14.png and val_28.png
+
+These two panoramic X-rays are from the DENTEX dataset, official validation set
+(validation_data/quadrant_enumeration_disease/xrays/val_14.png and val_28.png).
+They are unmodified copies.
+
+Credit: DENTEX, Hamamci et al., released with the Dental Enumeration and Diagnosis on
+Panoramic X-rays Challenge (MICCAI 2023).
+Source: https://huggingface.co/datasets/ibrahimhamamci/DENTEX
+
+Licence: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0), https://creativecommons.org/licenses/by-nc-sa/4.0/
+These two files stay under that licence. They may be used for non-commercial purposes only,
+with credit to the DENTEX authors, and copies or adaptations must be shared under the same
+licence. They are the only DENTEX images in this repository.
+
+Citation:
+Hamamci, I. E., Er, S., Simsar, E., Yuksel, A. E., Gultekin, S., Ozdemir, S. D., Yang, K.,
+Li, H. B., Pati, S., Stadlinger, B., et al. DENTEX: An Abnormal Tooth Detection with Dental
+Enumeration and Diagnosis Benchmark for Panoramic X-rays. arXiv:2305.19112, 2023.
+
+Hamamci, I. E., Er, S., Simsar, E., Sekuboyina, A., Gundogar, M., Stadlinger, B., Mehl, A.,
+Menze, B. Diffusion-Based Hierarchical Multi-label Object Detection to Analyze Panoramic
+Dental X-rays. MICCAI 2023, pp. 389-399, Springer.

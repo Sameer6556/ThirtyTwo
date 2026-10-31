@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thirty Two</title>
+<meta name="description" content="Find caries, deep caries, periapical lesions and impacted teeth on a panoramic X-ray.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a class="brand" href="/">Thirty Two</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <h1 class="title">Find caries, deep caries, periapical lesions and impacted teeth on a panoramic X-ray.</h1>
+    <ul class="key" aria-label="Colour and code of each finding">
+      <li><span class="swatch caries"></span>Caries <span class="code">C</span></li>
+      <li><span class="swatch deep"></span>Deep caries <span class="code">DC</span></li>
+      <li><span class="swatch peri"></span>Periapical lesion <span class="code">PL</span></li>
+      <li><span class="swatch impacted"></span>Impacted tooth <span class="code">IT</span></li>
+    </ul>
+  </div>
+
+  <section class="tool" aria-label="Tool">
+    <div class="drop" id="drop">
+      <span class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
+      <p class="drop-title">Drop a panoramic X-ray here, or <button type="button" class="link" id="choose">choose a file</button></p>
+      <p class="hint">JPEG, PNG or DICOM, up to 20 MB.</p>
+      <p class="samples">
+        <button type="button" class="outline" data-sample="samples/val_28.png">Try a sample</button>
+        <button type="button" class="outline" data-sample="samples/val_14.png">Try another sample</button>
+      </p>
+      <p class="privacy">Your X-ray is processed in memory and never stored.</p>
+      <input type="file" id="file" accept="image/jpeg,image/png,.dcm,.dicom,application/dicom" hidden>
+    </div>
+
+    <p class="message" id="message" role="alert" hidden></p>
+
+    <div class="progress" id="progress" hidden>
+      <div class="progress-line"><div class="progress-fill" id="progress-fill"></div></div>
+      <p class="progress-text" id="progress-text" aria-live="polite"></p>
+    </div>
+
+    <div class="warning" id="warning" hidden>
+      <p id="warning-text"></p>
+      <button type="button" class="outline" data-again>Choose another X-ray</button>
+    </div>
+
+    <div class="results" id="results" hidden>
+      <div class="viewer-col">
+        <div class="viewer" id="viewer" tabindex="0" role="group"
+             aria-label="X-ray viewer. Plus and minus zoom, the arrow keys pan, 0 resets the view. The findings are listed next to it.">
+          <img id="xray" alt="" draggable="false">
+          <canvas id="overlay" aria-hidden="true"></canvas>
+        </div>
+        <div class="viewer-tools">
+          <button type="button" class="outline small" id="reset">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/></svg>Reset view
+          </button>
+          <label class="range">Brightness <input type="range" id="brightness" min="40" max="200" value="100"></label>
+          <label class="range">Contrast <input type="range" id="contrast" min="40" max="250" value="100"></label>
+          <label class="check"><input type="checkbox" id="all-teeth"> Show all teeth</label>
+        </div>
+        <p class="disclaimer">Research prototype. Not a medical device. Don't use it to diagnose or treat anyone.</p>
+      </div>
+
+      <aside class="panel" aria-label="Findings">
+        <p class="summary" id="summary" aria-live="polite"></p>
+        <div id="groups"></div>
+
+        <fieldset class="block">
+          <legend>Show</legend>
+          <div class="toggles" id="toggles"></div>
+        </fieldset>
+
+        <div class="block">
+          <label class="legend" for="sensitivity">Sensitivity <span class="num" id="sens-value">×1.0</span></label>
+          <input type="range" id="sensitivity" min="-100" max="100" step="5" value="0">
+          <div class="scale" aria-hidden="true"><span>More findings</span><span>Fewer findings</span></div>
+        </div>
+
+        <fieldset class="block">
+          <legend>Mode</legend>
+          <div class="modes">
+            <label><input type="radio" name="mode" value="quick"> Quick <span class="num time" id="time-quick"></span></label>
+            <label><input type="radio" name="mode" value="full"> Full <span class="num time" id="time-full"></span></label>
+          </div>
+          <div class="progress-line inline" id="mode-progress" hidden><div class="progress-fill" id="mode-fill"></div></div>
+          <p class="hint" id="mode-hint" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="block downloads">
+          <button type="button" class="outline" id="dl-png">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Download image (PNG)
+          </button>
+          <button type="button" class="outline" id="dl-json">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Download findings (JSON)
+          </button>
+        </div>
+
+        <button type="button" class="link" data-again>Choose another X-ray</button>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p>Thirty Two. Research prototype, not a medical device.</p>
+    <nav aria-label="Pages"><a href="/" aria-current="page">Tool</a><a href="/how-it-works">How it works</a><a href="/accuracy">Accuracy</a><a href="/about">About</a></nav>
+  </div>
+</footer>
+</body>
+</html>

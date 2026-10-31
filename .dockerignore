@@ -1,0 +1,9 @@
+.git
+.venv
+assets
+data
+tests
+tools
+docs
+*.ipynb
+**/__pycache__

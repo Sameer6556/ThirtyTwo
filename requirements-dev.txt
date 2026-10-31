@@ -1,0 +1,4 @@
+# tests and the accuracy check (on top of requirements.txt)
+pytest==9.2.0
+httpx==0.28.1
+pycocotools==2.0.11

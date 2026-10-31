@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Thirty Two</title>
+<meta name="description" content="What Thirty Two finds on a panoramic X-ray, how teeth are numbered, and the data it learned from.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a class="brand" href="/">Thirty Two</a>
+  </div>
+</header>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>About</h1>
+    <p class="lede">Thirty Two is named after the 32 adult teeth. It marks four kinds of findings on a panoramic
+      dental X-ray and gives each one the number of its tooth.</p>
+  </header>
+
+  <section class="section">
+    <h2>What it finds</h2>
+    <ul class="cards two findings">
+      <li class="card"><h3><span class="swatch caries"></span>Caries <span class="code">C</span></h3>
+        <p>Decay in a tooth.</p></li>
+      <li class="card"><h3><span class="swatch deep"></span>Deep caries <span class="code">DC</span></h3>
+        <p>Decay that has reached deep into the tooth, close to the pulp.</p></li>
+      <li class="card"><h3><span class="swatch peri"></span>Periapical lesion <span class="code">PL</span></h3>
+        <p>A dark area around the tip of a root, usually a sign of infection.</p></li>
+      <li class="card"><h3><span class="swatch impacted"></span>Impacted tooth <span class="code">IT</span></h3>
+        <p>A tooth that has not grown into its place, often a wisdom tooth.</p></li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Tooth numbers</h2>
+    <p>Teeth are numbered the FDI way. The first digit is the quarter of the mouth, the second counts from the front
+      tooth (1) to the wisdom tooth (8). The chart is drawn the way a panoramic X-ray shows the mouth, so the
+      patient's right side is on the left.</p>
+    <figure class="figure fdi" aria-label="Tooth numbers as seen on a panoramic X-ray">
+      <div class="half">
+        <p class="fine">Patient's right</p>
+        <svg viewBox="0 0 279 104" role="img" aria-label="Upper right teeth 18 to 11, lower right teeth 48 to 41">
+          <g class="tooth">
+            <rect x="4" y="4" width="32" height="44" rx="5"/><rect x="40" y="4" width="35" height="44" rx="5"/>
+            <rect x="79" y="4" width="38" height="44" rx="5"/><rect x="121" y="4" width="29" height="44" rx="5"/>
+            <rect x="154" y="4" width="29" height="44" rx="5"/><rect x="187" y="4" width="27" height="44" rx="5"/>
+            <rect x="218" y="4" width="25" height="44" rx="5"/><rect x="247" y="4" width="28" height="44" rx="5"/>
+            <rect x="4" y="56" width="32" height="44" rx="5"/><rect x="40" y="56" width="35" height="44" rx="5"/>
+            <rect x="79" y="56" width="38" height="44" rx="5"/><rect x="121" y="56" width="29" height="44" rx="5"/>
+            <rect x="154" y="56" width="29" height="44" rx="5"/><rect x="187" y="56" width="27" height="44" rx="5"/>
+            <rect x="218" y="56" width="25" height="44" rx="5"/><rect x="247" y="56" width="28" height="44" rx="5"/>
+          </g>
+          <g class="tooth-no">
+            <text x="20" y="26">18</text><text x="57.5" y="26">17</text><text x="98" y="26">16</text><text x="135.5" y="26">15</text>
+            <text x="168.5" y="26">14</text><text x="200.5" y="26">13</text><text x="230.5" y="26">12</text><text x="261" y="26">11</text>
+            <text x="20" y="78">48</text><text x="57.5" y="78">47</text><text x="98" y="78">46</text><text x="135.5" y="78">45</text>
+            <text x="168.5" y="78">44</text><text x="200.5" y="78">43</text><text x="230.5" y="78">42</text><text x="261" y="78">41</text>
+          </g>
+        </svg>
+      </div>
+      <div class="half">
+        <p class="fine">Patient's left</p>
+        <svg viewBox="0 0 279 104" role="img" aria-label="Upper left teeth 21 to 28, lower left teeth 31 to 38">
+          <g class="tooth">
+            <rect x="4" y="4" width="28" height="44" rx="5"/><rect x="36" y="4" width="25" height="44" rx="5"/>
+            <rect x="65" y="4" width="27" height="44" rx="5"/><rect x="96" y="4" width="29" height="44" rx="5"/>
+            <rect x="129" y="4" width="29" height="44" rx="5"/><rect x="162" y="4" width="38" height="44" rx="5"/>
+            <rect x="204" y="4" width="35" height="44" rx="5"/><rect x="243" y="4" width="32" height="44" rx="5"/>
+            <rect x="4" y="56" width="28" height="44" rx="5"/><rect x="36" y="56" width="25" height="44" rx="5"/>
+            <rect x="65" y="56" width="27" height="44" rx="5"/><rect x="96" y="56" width="29" height="44" rx="5"/>
+            <rect x="129" y="56" width="29" height="44" rx="5"/><rect x="204" y="56" width="35" height="44" rx="5"/>
+            <rect x="243" y="56" width="32" height="44" rx="5"/>
+          </g>
+          <rect x="162" y="56" width="38" height="44" rx="5" class="tooth-hl"/>
+          <g class="tooth-no">
+            <text x="18" y="26">21</text><text x="48.5" y="26">22</text><text x="78.5" y="26">23</text><text x="110.5" y="26">24</text>
+            <text x="143.5" y="26">25</text><text x="181" y="26">26</text><text x="221.5" y="26">27</text><text x="259" y="26">28</text>
+            <text x="18" y="78">31</text><text x="48.5" y="78">32</text><text x="78.5" y="78">33</text><text x="110.5" y="78">34</text>
+            <text x="143.5" y="78">35</text><text x="181" y="78" class="strong">36</text><text x="221.5" y="78">37</text><text x="259" y="78">38</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+    <p class="fine">Upper teeth are on the top row, lower teeth on the bottom row. Tooth 36, outlined, is the first
+      molar of the lower jaw on the patient's left.</p>
+  </section>
+
+  <section class="section">
+    <h2>What it is for</h2>
+    <p>Thirty Two is a research prototype. It shows, on any panoramic X-ray, what a system trained on a public set of
+      X-rays can find and where it falls short. It is for research and teaching, not for patient care: it is not a
+      medical device, and it should not be used to diagnose or treat anyone.</p>
+  </section>
+
+  <section class="section">
+    <h2>Privacy</h2>
+    <p>Your X-ray is processed in memory and never stored. Nothing about it is written to disk or to the logs, and
+      the page loads nothing from other websites.</p>
+  </section>
+
+  <section class="section">
+    <h2>Data and licence</h2>
+    <p>Thirty Two learned from DENTEX, a public set of panoramic X-rays from three hospitals, released for the DENTEX
+      challenge at MICCAI 2023. Its models were trained on 635 X-rays labelled by experts, its settings were picked
+      on 70 others, and some models were trained further on 1,961 X-rays without diagnosis labels.</p>
+    <p>DENTEX is released under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noreferrer">CC
+      BY-NC-SA 4.0</a>, so Thirty Two is for research and teaching only and may not be used commercially. The two
+      sample X-rays are unmodified files from the DENTEX validation set and stay under that licence
+      (<a href="samples/LICENSE.txt">notice</a>).</p>
+    <p class="cite">Hamamci, I. E., Er, S., Simsar, E., Yuksel, A. E., Gultekin, S., Ozdemir, S. D., Yang, K., Li, H. B.,
+      Pati, S., Stadlinger, B., et al. DENTEX: An abnormal tooth detection with dental enumeration and diagnosis
+      benchmark for panoramic X-rays. arXiv:2305.19112, 2023.</p>
+  </section>
+
+  <p class="next"><a href="/">Try it on an X-ray</a></p>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p>Thirty Two. Research prototype, not a medical device.</p>
+    <nav aria-label="Pages"><a href="/">Tool</a><a href="/how-it-works">How it works</a><a href="/accuracy">Accuracy</a><a href="/about" aria-current="page">About</a></nav>
+  </div>
+</footer>
+</body>
+</html>

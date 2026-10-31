@@ -1,0 +1,20 @@
+# Thirty Two, Python 3.13. Same model libraries as the v15 Kaggle runs: torch 2.11.0, ultralytics 8.4.174.
+# torch and torchvision: install the CPU wheels first (make install and the Dockerfile do this):
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cpu
+# ultralytics pulls in opencv-python; it is swapped for the headless build afterwards (same cv2, no GUI libraries).
+torch==2.11.0
+torchvision==0.26.0
+ultralytics==8.4.174
+ultralytics-thop==2.2.3
+timm==1.0.30
+opencv-python-headless==5.0.0.93
+numpy==2.5.3
+pandas==3.0.5
+pillow==12.3.0
+pydicom==3.0.2
+huggingface_hub==2.4.0
+safetensors==0.8.0
+fastapi==0.162.0
+starlette==1.7.0
+uvicorn==0.54.0
+python-multipart==0.0.32
