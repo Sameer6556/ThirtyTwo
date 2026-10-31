@@ -150,22 +150,12 @@
       <li>Nine models vote, and boxes that several models agree on score higher.</li>
     </ol>
     <p>Some of the models were trained further on 1,961 extra X-rays that the system labelled itself.</p>
-    <p>Quick mode runs one of the detectors on its own, with the tooth detector for the tooth numbers. It is many
-      times faster and scores a little lower.</p>
   </section>
 
   <section id="accuracy" class="text">
     <h2>Accuracy</h2>
     <p>On the 50 official DENTEX validation X-rays, the full system scores 48.8 AP and Quick mode 48.1, against 38.0
       for a standard YOLO11m detector. Over five random splits of the DENTEX data, the full system averages 47.8 AP.</p>
-    <table class="scores">
-      <thead><tr><th scope="col">On the official 50</th><th scope="col" class="num">AP</th></tr></thead>
-      <tbody>
-        <tr><td>Full system</td><td class="num">48.8</td></tr>
-        <tr><td>Quick mode</td><td class="num">48.1</td></tr>
-        <tr><td>Standard YOLO11m</td><td class="num">38.0</td></tr>
-      </tbody>
-    </table>
     <p>AP is a strict score from 0 to 100 for how closely the boxes overlap the experts' boxes, not the percentage of
       correct answers.</p>
     <h3>Limitations</h3>

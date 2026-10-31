@@ -12,6 +12,7 @@ data/
 # Run outputs and scratch
 runs/
 scratch/
+screenshots/
 outputs/
 dentex_work_*/
 

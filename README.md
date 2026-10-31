@@ -45,6 +45,14 @@ comparison of every model with its saved Kaggle outputs, and how the display thr
 Some of the models were trained further on 1,961 extra DENTEX X-rays that the system labelled itself. Quick mode runs
 only the round-1 self-trained YOLO11m (plus the tooth detector, for the tooth numbers).
 
+### Speed
+
+Measured on a 4-core CPU with the models loaded, over the 50 official validation X-rays: Quick mode 1.2 s per X-ray
+(slowest 1.5 s), the full system 10.5 s (slowest 13.4 s). The free Hugging Face CPU has 2 cores, so expect about twice
+that. Because the full system takes more than about 10 seconds, the page starts in Quick mode and shows the expected
+wait next to Full (the server keeps updating it from its own recent runs). Loading the models takes about 5 to 40
+seconds when the server starts.
+
 ## Run it locally
 
 Python 3.13 and `make`:
@@ -123,8 +131,12 @@ Settings, Variables).
 3. The Space builds the `Dockerfile`, starts, downloads the weights from the GitHub release (about a minute) and
    then answers. The free Space sleeps when nobody uses it and downloads the weights again after a restart.
 
-The two sample X-rays in `thirtytwo/static/samples` are pushed with the code. Git hosting on Hugging Face may ask to
-store them with Git LFS (`git lfs track "*.png"`).
+The two sample X-rays in `thirtytwo/static/samples` are pushed with the code. Hugging Face only accepts binary files
+through Git LFS, so if the push is rejected because of them, run this once and push again:
+
+```bash
+git lfs track "thirtytwo/static/samples/*.png" && git add .gitattributes && git add --renormalize . && git commit -m "Store the samples with Git LFS"
+```
 
 ## Check it yourself
 
@@ -147,7 +159,19 @@ make test
 The parity tests compare the app with the notebook's own functions: the in-memory JPEG export against
 `dentex_utils.resize_long` (byte for byte, at 1280 and 1536), the crops against `dentex_utils.build_crops`, the
 classifier against `train_arch.predict` on saved crops, the YOLOs against ultralytics' own validator, the fusion
-against the saved Kaggle outputs (48.77 AP), and the median box adapter against its rebuild (32.21 AP).
+against the saved Kaggle outputs (48.77 AP), and the median box adapter against its rebuild (32.21 AP). Tests that
+need DENTEX or the saved Kaggle outputs are skipped when those are missing.
+
+Browser check (Node.js and Playwright, with the app running): screenshots at 375 x 812 and 1440 x 900, and a failure
+on console errors, requests to other hosts, sideways scrolling or elements sticking out of the page.
+
+```bash
+node tools/screenshots.js http://127.0.0.1:7860 screenshots
+```
+
+The class colours are the Okabe-Ito set; `python tools/check_colours.py` checks that every pair stays apart under the
+three common colour-vision deficiencies (closest pair: CIEDE2000 10.9) and that each colour is readable on the dark
+viewer. Each box also carries a code (C, DC, PL, IT), so colour is never the only cue.
 
 ## Data and credit
 

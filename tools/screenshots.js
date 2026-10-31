@@ -49,7 +49,8 @@ const fs = require('fs');
     const row = await page.$('.row');
     if (row) await row.hover();
     await page.waitForTimeout(150);
-    await page.screenshot({ path: `${out}/${w}-results.png`, fullPage: w < 500 });
+    await page.screenshot({ path: `${out}/${w}-results.png` });
+    await page.screenshot({ path: `${out}/${w}-results-page.png`, fullPage: true });
 
     await page.check('#all-teeth');
     await page.locator('#viewer').hover();

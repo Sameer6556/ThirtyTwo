@@ -151,10 +151,6 @@ fieldset.block > legend + * { clear: both; }
 .diagram .box-it { fill: none; stroke: #C7BA1E; stroke-width: 1.6; }
 .diagram .step text { font: 400 15px var(--font); fill: var(--muted); text-anchor: middle; }
 .steps li { margin: 4px 0; }
-.scores { border-collapse: collapse; margin: 12px 0; min-width: 260px; }
-.scores th, .scores td { border-bottom: 1px solid var(--border); padding: 6px 16px 6px 0; text-align: left; font-weight: 400; }
-.scores th { font-size: var(--s); color: var(--muted); }
-.scores .num { text-align: right; padding-right: 0; }
 .links { list-style: none; padding: 0 !important; }
 .todo { color: var(--muted); }
 .cite { font-size: var(--s); color: var(--muted); overflow-wrap: anywhere; }
