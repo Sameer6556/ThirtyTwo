@@ -1,0 +1,35 @@
+# Never commit weights, assets or DENTEX images.
+assets/
+data/
+*.zip
+*.pt
+*.pth
+*.onnx
+*.engine
+*.safetensors
+*.pkl
+
+# Run outputs and scratch
+runs/
+scratch/
+outputs/
+dentex_work_*/
+
+# DENTEX images, wherever they end up
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
+*.tiff
+!docs/**/*.png
+!docs/**/*.jpg
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
