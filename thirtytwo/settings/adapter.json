@@ -1,0 +1,110 @@
+{
+ "description": "Median box adapter of protocol A: for each disease and jaw, the median offset of each edge of the annotated disease box from the found tooth box, in tooth widths (dx1, dx2) and heights (dy1, dy2). Both tooth classifiers place their boxes with it (box source picked on validation).",
+ "fitted_with": "dentex_utils.fit_box_adapter(DENTEX training records, assets/teeth_clean.pkl, assets/keys/A_train.txt), min_count=20",
+ "table": [
+  {
+   "disease": 0,
+   "name": "Caries",
+   "upper": false,
+   "jaw": "lower",
+   "offsets": [
+    -0.004145760762256666,
+    -0.018640359096772016,
+    -0.0017759679017980924,
+    -0.07260603189023232
+   ],
+   "pairs": 934
+  },
+  {
+   "disease": 0,
+   "name": "Caries",
+   "upper": true,
+   "jaw": "upper",
+   "offsets": [
+    -0.013931010538228594,
+    0.06858569840508608,
+    0.008165244926360404,
+    0.009682753762663055
+   ],
+   "pairs": 818
+  },
+  {
+   "disease": 1,
+   "name": "Deep Caries",
+   "upper": false,
+   "jaw": "lower",
+   "offsets": [
+    -0.004842443454597874,
+    -0.017135836253164456,
+    -0.00698476064104368,
+    -0.08141890170236359
+   ],
+   "pairs": 235
+  },
+  {
+   "disease": 1,
+   "name": "Deep Caries",
+   "upper": true,
+   "jaw": "upper",
+   "offsets": [
+    -0.008524867260640716,
+    0.08028791318930799,
+    -0.0004502540993732044,
+    0.011340484587017325
+   ],
+   "pairs": 162
+  },
+  {
+   "disease": 2,
+   "name": "Periapical Lesion",
+   "upper": false,
+   "jaw": "lower",
+   "offsets": [
+    -0.03110196814065078,
+    -0.02347569032000956,
+    0.04422630356765886,
+    -0.007649849725364485
+   ],
+   "pairs": 99
+  },
+  {
+   "disease": 2,
+   "name": "Periapical Lesion",
+   "upper": true,
+   "jaw": "upper",
+   "offsets": [
+    -0.07114330723920984,
+    -0.00930251780744038,
+    0.050439060635422445,
+    0.030836908199381247
+   ],
+   "pairs": 24
+  },
+  {
+   "disease": 3,
+   "name": "Impacted",
+   "upper": false,
+   "jaw": "lower",
+   "offsets": [
+    -0.007954600675600167,
+    -0.03809285808105699,
+    -0.003723241133339832,
+    -0.056146805369059055
+   ],
+   "pairs": 288
+  },
+  {
+   "disease": 3,
+   "name": "Impacted",
+   "upper": true,
+   "jaw": "upper",
+   "offsets": [
+    -0.0330266993543549,
+    0.05002450255207128,
+    0.02163526078141388,
+    0.021930230026319504
+   ],
+   "pairs": 227
+  }
+ ]
+}
