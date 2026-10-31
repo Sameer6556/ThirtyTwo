@@ -17,7 +17,7 @@ from pathlib import Path
 from statistics import median
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 from starlette.formparsers import MultiPartException, MultiPartParser
@@ -167,5 +167,14 @@ async def predict(request: Request):
     del data
     return out
 
+
+def _page(name):
+    async def page():
+        return FileResponse(STATIC / f'{name}.html')
+    return page
+
+
+for _name in ('how-it-works', 'accuracy', 'about'):          # the three text pages, at clean URLs
+    app.add_api_route(f'/{_name}', _page(_name), methods=['GET'], include_in_schema=False)
 
 app.mount('/', StaticFiles(directory=STATIC, html=True), name='static')

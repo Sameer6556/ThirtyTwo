@@ -12,21 +12,29 @@
 <body>
 <header class="bar">
   <div class="wrap bar-inner">
-    <a class="brand" href="#top">Thirty Two</a>
-    <nav aria-label="Sections">
-      <a href="#how">How it works</a>
-      <a href="#accuracy">Accuracy</a>
-      <a href="#about">About</a>
+    <a class="brand" href="/" aria-current="page">Thirty Two</a>
+    <nav aria-label="Pages">
+      <a href="/how-it-works">How it works</a>
+      <a href="/accuracy">Accuracy</a>
+      <a href="/about">About</a>
     </nav>
   </div>
 </header>
 
-<main id="top" class="wrap">
-  <p class="lede">Find caries, deep caries, periapical lesions and impacted teeth on a panoramic X-ray.</p>
+<main class="wrap">
+  <div class="intro">
+    <h1 class="title">Find caries, deep caries, periapical lesions and impacted teeth on a panoramic X-ray.</h1>
+    <ul class="key" aria-label="Colour and code of each finding">
+      <li><span class="swatch caries"></span>Caries <span class="code">C</span></li>
+      <li><span class="swatch deep"></span>Deep caries <span class="code">DC</span></li>
+      <li><span class="swatch peri"></span>Periapical lesion <span class="code">PL</span></li>
+      <li><span class="swatch impacted"></span>Impacted tooth <span class="code">IT</span></li>
+    </ul>
+  </div>
 
   <section class="tool" aria-label="Tool">
     <div class="drop" id="drop">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+      <span class="drop-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
       <p class="drop-title">Drop a panoramic X-ray here, or <button type="button" class="link" id="choose">choose a file</button></p>
       <p class="hint">JPEG, PNG or DICOM, up to 20 MB.</p>
       <p class="samples">
@@ -105,91 +113,13 @@
       </aside>
     </div>
   </section>
-
-  <section id="how" class="text">
-    <h2>How it works</h2>
-    <svg class="diagram" viewBox="0 0 600 112" role="img" aria-label="Four steps: find and number the teeth, check each tooth, scan the whole X-ray, vote.">
-      <g class="frame">
-        <rect x="1" y="1" width="134" height="86" rx="6"/>
-        <rect x="155" y="1" width="134" height="86" rx="6"/>
-        <rect x="309" y="1" width="134" height="86" rx="6"/>
-        <rect x="463" y="1" width="134" height="86" rx="6"/>
-      </g>
-      <g class="arrow">
-        <path d="M140 44h10M146 40l4 4-4 4"/><path d="M294 44h10M300 40l4 4-4 4"/><path d="M448 44h10M454 40l4 4-4 4"/>
-      </g>
-      <g class="ink">
-        <rect x="22" y="18" width="13" height="22" rx="3"/><rect x="40" y="16" width="13" height="24" rx="3"/>
-        <rect x="58" y="15" width="11" height="25" rx="3"/><rect x="74" y="15" width="11" height="25" rx="3"/>
-        <rect x="90" y="16" width="13" height="24" rx="3"/><rect x="108" y="18" width="13" height="22" rx="3"/>
-        <rect x="22" y="48" width="13" height="22" rx="3"/><rect x="40" y="48" width="13" height="24" rx="3"/>
-        <rect x="58" y="48" width="11" height="25" rx="3"/><rect x="74" y="48" width="11" height="25" rx="3"/>
-        <rect x="90" y="48" width="13" height="24" rx="3"/><rect x="108" y="48" width="13" height="22" rx="3"/>
-      </g>
-      <g class="soft"><rect x="38" y="13" width="17" height="30" rx="2"/><rect x="88" y="45" width="17" height="30" rx="2"/></g>
-      <g class="ink">
-        <rect x="200" y="12" width="44" height="66" rx="3" class="soft"/>
-        <path d="M211 30c0-6 4-9 11-9s11 3 11 9v8c0 5-2 8-4 12l-2 18h-2l-3-14-3 14h-2l-2-18c-2-4-4-7-4-12z"/>
-      </g>
-      <rect x="236" y="16" width="16" height="12" rx="2" class="tag-c"/>
-      <text x="244" y="25.5" class="tag-text">C</text>
-      <g class="ink">
-        <rect x="324" y="20" width="104" height="50" rx="10"/>
-        <path d="M334 44c14-14 70-14 84 0M334 48c14 12 70 12 84 0"/>
-      </g>
-      <rect x="346" y="30" width="16" height="15" rx="1" class="box-c"/>
-      <rect x="392" y="47" width="15" height="15" rx="1" class="box-it"/>
-      <g class="soft"><rect x="499" y="22" width="52" height="40" rx="2"/><rect x="507" y="28" width="52" height="40" rx="2"/><rect x="503" y="18" width="52" height="40" rx="2"/></g>
-      <rect x="503" y="24" width="52" height="40" rx="2" class="ink strong"/>
-      <g class="step"><text x="68" y="106">1</text><text x="222" y="106">2</text><text x="376" y="106">3</text><text x="530" y="106">4</text></g>
-    </svg>
-    <ol class="steps">
-      <li>A tooth detector finds and numbers every tooth.</li>
-      <li>A classifier checks each tooth up close.</li>
-      <li>Detectors scan the whole X-ray.</li>
-      <li>Nine models vote, and boxes that several models agree on score higher.</li>
-    </ol>
-    <p>Some of the models were trained further on 1,961 extra X-rays that the system labelled itself.</p>
-  </section>
-
-  <section id="accuracy" class="text">
-    <h2>Accuracy</h2>
-    <p>On the 50 official DENTEX validation X-rays, the full system scores 48.8 AP and Quick mode 48.1, against 38.0
-      for a standard YOLO11m detector. Over five random splits of the DENTEX data, the full system averages 47.8 AP.</p>
-    <p>AP is a strict score from 0 to 100 for how closely the boxes overlap the experts' boxes, not the percentage of
-      correct answers.</p>
-    <h3>Limitations</h3>
-    <ul>
-      <li>Trained only on DENTEX, which comes from three hospitals in one country.</li>
-      <li>Not tested on other X-ray machines or in other clinics.</li>
-      <li>It can miss findings and raise false alarms.</li>
-      <li>Periapical lesions are the hardest class.</li>
-    </ul>
-  </section>
-
-  <section id="about" class="text">
-    <h2>About</h2>
-    <p>Thirty Two is named after the 32 adult teeth. It was built by Sameer Singh (B.Tech CSE, IIIT Manipur) as his
-      major project, supervised by Dr. Khoirom Motilal Singh.</p>
-    <ul class="links">
-      <!-- Replace each "link to come" with a link, e.g. <a href="https://...">Read the report</a> -->
-      <li>Report: <span class="todo">link to come</span></li>
-      <li>Paper: <span class="todo">link to come</span></li>
-      <li>Code: <span class="todo">link to come</span></li>
-    </ul>
-    <p>For research and teaching only. The data it learned from may not be used commercially, and neither may this
-      app.</p>
-    <h3>Data</h3>
-    <p>Trained and tested on DENTEX (Hamamci et al., 2023), released under
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noreferrer">CC BY-NC-SA 4.0</a>. The two
-      sample X-rays are unmodified files from the DENTEX validation set and stay under that licence
-      (<a href="samples/LICENSE.txt">notice</a>).</p>
-    <p class="cite">Hamamci, I. E., Er, S., Simsar, E., Yuksel, A. E., Gultekin, S., Ozdemir, S. D., Yang, K., Li, H. B.,
-      Pati, S., Stadlinger, B., et al. DENTEX: An abnormal tooth detection with dental enumeration and diagnosis
-      benchmark for panoramic X-rays. arXiv:2305.19112, 2023.</p>
-  </section>
 </main>
 
-<footer class="wrap foot">Thirty Two. Research prototype, not a medical device.</footer>
+<footer class="foot">
+  <div class="foot-inner">
+    <p>Thirty Two. Research prototype, not a medical device. For research and teaching only.</p>
+    <nav aria-label="Footer"><a href="/how-it-works">How it works</a><a href="/accuracy">Accuracy</a><a href="/about">About</a></nav>
+  </div>
+</footer>
 </body>
 </html>

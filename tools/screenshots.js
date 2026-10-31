@@ -37,10 +37,14 @@ const fs = require('fs');
     page.on('pageerror', (e) => problems.push(`${w}px page error: ${e.message}`));
     page.on('response', (r) => { if (r.status() >= 400) problems.push(`${w}px HTTP ${r.status()} for ${r.url()}`); });
 
+    for (const p of ['how-it-works', 'accuracy', 'about']) {       // the three text pages
+      await page.goto(`${base}/${p}`, { waitUntil: 'networkidle' });
+      problems.push(...await layout(page, `${w}px ${p}`));
+      await page.screenshot({ path: `${out}/${w}-${p}.png`, fullPage: true });
+    }
     await page.goto(base, { waitUntil: 'networkidle' });
     problems.push(...await layout(page, `${w}px start`));
     await page.screenshot({ path: `${out}/${w}-start.png` });
-    await page.screenshot({ path: `${out}/${w}-page.png`, fullPage: true });
 
     await page.click('[data-sample="samples/val_28.png"]');
     await page.waitForSelector('#results:not([hidden])', { timeout: 180000 });

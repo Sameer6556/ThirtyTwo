@@ -29,12 +29,17 @@ def post(client, data, mode='quick', name='x.png', ctype='image/png'):
     return client.post('/api/predict', files={'image': (name, data, ctype)}, data={'mode': mode})
 
 
-def test_health_and_page(client):
+def test_health_and_pages(client):
     h = client.get('/api/health').json()
     assert h['status'] == 'ok' and h['default_mode'] in ('quick', 'full') and h['max_upload_mb'] == 20
     page = client.get('/')
-    assert page.status_code == 200 and 'Thirty Two' in page.text
+    assert page.status_code == 200 and 'Thirty Two' in page.text and 'id="drop"' in page.text
     assert "default-src 'self'" in page.headers['content-security-policy']
+    for path, heading in (('/how-it-works', 'How it works'), ('/accuracy', 'Accuracy'), ('/about', 'About')):
+        r = client.get(path)
+        assert r.status_code == 200 and f'<h1>{heading}</h1>' in r.text and 'aria-current="page"' in r.text
+        assert "default-src 'self'" in r.headers['content-security-policy']
+    assert 'Sameer' not in client.get('/about').text          # the About page is about the project
 
 
 @pytest.mark.parametrize('mode', ['quick', 'full'])
