@@ -39,20 +39,13 @@ a:hover { text-decoration-thickness: 2px; }
 .bar { border-bottom: 1px solid var(--border); background: var(--bg); }
 .bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; flex-wrap: wrap; }
 .brand { color: var(--text); text-decoration: none; font-weight: 600; font-size: var(--l); letter-spacing: -0.01em; }
-.bar nav { display: flex; gap: 24px; flex-wrap: wrap; }
-.bar nav a { color: var(--text); text-decoration: none; font-size: var(--m); }
-.bar nav a:hover { color: var(--accent); text-decoration: underline; }
-.bar nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
-@media (max-width: 480px) {
-  .bar nav { gap: 14px; }
-  .bar nav a { font-size: var(--s); }
-}
 .foot { padding: 0 16px 32px; margin-top: 72px; font-size: var(--s); color: var(--muted); }
 .foot-inner { max-width: 1168px; margin: 0 auto; padding-top: 16px; border-top: 1px solid var(--border);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 .foot p { margin: 0; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 16px; }
 .foot nav a { color: var(--muted); }
+.foot nav a[aria-current="page"] { color: var(--text); font-weight: 600; text-decoration: none; }
 
 /* ---------------------------------------------------------------- the tool page */
 .intro { margin: 40px 0 24px; }
@@ -186,7 +179,6 @@ fieldset.block > legend + * { clear: both; }
 .steps .card h2 { margin-top: 14px; }
 .step-no { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--border);
   border-radius: var(--r); background: var(--bg); font-size: var(--s); font-weight: 600; color: var(--muted); }
-.callout { max-width: 760px; margin: 24px 0 0; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); }
 .facts { margin: 14px 0 0; }
 .facts div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-top: 1px solid var(--border); font-size: var(--s); }
 .facts dt { color: var(--muted); }

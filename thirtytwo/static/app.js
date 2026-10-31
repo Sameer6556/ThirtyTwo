@@ -11,7 +11,7 @@ const BY_KEY = Object.fromEntries(CLASSES.map((c) => [c.key, c]));
 const $ = (id) => document.getElementById(id);
 
 const S = {
-  file: null, name: '', url: null, results: {}, measured: {}, mode: 'quick', expected: { full: 12, quick: 1.5 },
+  file: null, name: '', url: null, results: {}, measured: {}, mode: 'quick', expected: { full: 10, quick: 1 },
   shown: Object.fromEntries(CLASSES.map((c) => [c.key, true])), factor: 1, allTeeth: false,
   hover: null, selected: null, view: { k: 1, x: 0, y: 0, fit: 1 }, busy: false,
 };
@@ -19,7 +19,8 @@ const S = {
 // ------------------------------------------------------------------ helpers
 function show(el, on) { el.hidden = !on; }
 function plural(n, one, many) { return `${n} ${n === 1 ? one : many}`; }
-function seconds(s) { return s < 10 ? `${s.toFixed(1)} s` : `${Math.round(s)} s`; }
+function seconds(s) { return s < 10 ? `${s.toFixed(1)} s` : `${Math.round(s)} s`; }   // a measured time
+function about(s) { return `about ${Math.max(1, Math.round(s))} s`; }                      // an expected time
 function current() { return S.results[S.mode]; }
 function message(text) { $('message').textContent = text || ''; show($('message'), !!text); }
 
@@ -59,8 +60,8 @@ async function analyse(mode) {
   S.mode = mode;
   const wait = S.expected[mode] || 5;
   const text = mode === 'full'
-    ? `Running the full system. This usually takes about ${seconds(wait)}.`
-    : `Running Quick mode. This usually takes about ${seconds(wait)}.`;
+    ? `Running the full system. This usually takes ${about(wait)}.`
+    : `Running Quick mode. This usually takes ${about(wait)}.`;
   const box = switching ? $('mode-progress') : $('progress');
   const fill = switching ? $('mode-fill') : $('progress-fill');
   if (switching) {
@@ -139,10 +140,10 @@ function syncMode() {
 
 function modeLabels() {
   for (const m of ['quick', 'full']) {
-    $(`time-${m}`).textContent = S.measured[m] != null ? seconds(S.measured[m]) : `about ${seconds(S.expected[m])}`;
+    $(`time-${m}`).textContent = S.measured[m] != null ? seconds(S.measured[m]) : about(S.expected[m]);
   }
   $('mode-hint').textContent = S.mode === 'quick'
-    ? `Full mode runs all nine models and takes about ${seconds(S.measured.full ?? S.expected.full)}.`
+    ? `Full mode runs all nine models and takes ${about(S.measured.full ?? S.expected.full)}.`
     : 'Quick mode runs one detector and is many times faster.';
 }
 

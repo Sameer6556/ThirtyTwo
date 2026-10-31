@@ -7,16 +7,12 @@
 <meta name="description" content="How Thirty Two finds caries, deep caries, periapical lesions and impacted teeth on a panoramic X-ray.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="app.css">
+<script src="times.js" defer></script>
 </head>
 <body>
 <header class="bar">
   <div class="wrap bar-inner">
     <a class="brand" href="/">Thirty Two</a>
-    <nav aria-label="Pages">
-      <a href="/how-it-works" aria-current="page">How it works</a>
-      <a href="/accuracy">Accuracy</a>
-      <a href="/about">About</a>
-    </nav>
   </div>
 </header>
 
@@ -94,8 +90,6 @@
     </li>
   </ol>
 
-  <p class="callout">Some of the models were trained further on 1,961 extra X-rays that the system labelled itself.</p>
-
   <section class="section">
     <h2>Quick and full</h2>
     <div class="cards two">
@@ -103,7 +97,7 @@
         <h3>Quick</h3>
         <p>One self-trained detector, plus the tooth detector for the tooth numbers.</p>
         <dl class="facts">
-          <div><dt>Time per X-ray</dt><dd>about 1 s</dd></div>
+          <div><dt>Time per X-ray</dt><dd data-time="quick">about 1 s</dd></div>
           <div><dt>AP on the official 50</dt><dd>48.1</dd></div>
         </dl>
       </div>
@@ -111,13 +105,13 @@
         <h3>Full</h3>
         <p>All nine models and the vote.</p>
         <dl class="facts">
-          <div><dt>Time per X-ray</dt><dd>about 10 s</dd></div>
+          <div><dt>Time per X-ray</dt><dd data-time="full">about 10 s</dd></div>
           <div><dt>AP on the official 50</dt><dd>48.8</dd></div>
         </dl>
       </div>
     </div>
-    <p class="fine">Times measured on a 4-core CPU. The page starts in Quick mode; switch to Full in the findings
-      panel.</p>
+    <p class="fine">Typical times on this server, the same ones the tool shows. The tool starts in Quick mode; switch
+      to Full in the findings panel.</p>
   </section>
 
   <p class="next"><a href="/accuracy">How accurate it is</a></p>
@@ -125,8 +119,8 @@
 
 <footer class="foot">
   <div class="foot-inner">
-    <p>Thirty Two. Research prototype, not a medical device. For research and teaching only.</p>
-    <nav aria-label="Footer"><a href="/">Tool</a><a href="/how-it-works">How it works</a><a href="/accuracy">Accuracy</a><a href="/about">About</a></nav>
+    <p>Thirty Two. Research prototype, not a medical device.</p>
+    <nav aria-label="Pages"><a href="/">Tool</a><a href="/how-it-works" aria-current="page">How it works</a><a href="/accuracy">Accuracy</a><a href="/about">About</a></nav>
   </div>
 </footer>
 </body>

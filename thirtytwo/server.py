@@ -29,7 +29,8 @@ MAX_BYTES = 20 * 1024 * 1024
 MAX_BODY = MAX_BYTES + 64 * 1024                   # room for the multipart framing and the mode field
 MAX_QUEUE = int(os.environ.get('THIRTYTWO_MAX_QUEUE', '4'))
 DEFAULT_MODE = os.environ.get('THIRTYTWO_DEFAULT_MODE', 'quick')
-EXPECTED_S = {'full': 12.0, 'quick': 1.5}          # measured on a 4-core CPU (README), replaced by this server's own
+EXPECTED_S = {'full': 10.0, 'quick': 1.0}          # 10.5 s and 1.2 s on average on a 4-core CPU (README); replaced
+                                                   # by this server's own recent runs once it has some
 STATIC = Path(__file__).resolve().parent / 'static'
 log = logging.getLogger('thirtytwo')
 
@@ -50,6 +51,7 @@ class State:
         self.lock = asyncio.Lock()          # one prediction at a time
         self.waiting = 0                    # requests holding or waiting for the lock
         self.times = {'full': [], 'quick': []}
+        self.warm = set()                   # modes that have run once (a first, cold run is not a typical time)
 
     def expected(self, mode):
         t = self.times[mode][-20:]
@@ -63,7 +65,15 @@ def _load():
     try:
         from .pipeline import ThirtyTwo
         t0 = time.time()
-        S.model = ThirtyTwo()
+        model = ThirtyTwo()
+        sample = STATIC / 'samples' / 'val_14.png'
+        if sample.is_file():                # one Quick run while starting, so no visitor waits for the warm-up
+            try:
+                model.predict(sample.read_bytes(), 'quick')
+                S.warm.add('quick')
+            except Exception:
+                log.exception('thirtytwo: warm-up failed')
+        S.model = model
         log.warning('thirtytwo: models loaded in %.0fs on %s', time.time() - t0, S.model.device)
     except Exception as e:                  # reported by /api/health
         S.error = f'{type(e).__name__}: {e}'
@@ -151,7 +161,9 @@ async def predict(request: Request):
             t0 = time.perf_counter()
             result = await run_in_threadpool(S.model.predict, data, mode)
             if not result['warning']:
-                S.times[mode].append(time.perf_counter() - t0)
+                if mode in S.warm:
+                    S.times[mode].append(time.perf_counter() - t0)
+                S.warm.add(mode)
     except ImageError as e:
         return error(422, f'Could not read the image: {e}.')
     except Exception:
